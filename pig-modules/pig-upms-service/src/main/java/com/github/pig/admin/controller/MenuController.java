@@ -33,6 +33,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.*;
 
 /**
+ * 菜单表
  * @author lengleng
  * @date 2017/10/31
  */

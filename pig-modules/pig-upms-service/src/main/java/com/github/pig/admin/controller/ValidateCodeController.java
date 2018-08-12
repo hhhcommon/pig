@@ -63,6 +63,7 @@ public class ValidateCodeController {
         String text = producer.createText();
         //生成图片验证码
         BufferedImage image = producer.createImage(text);
+        // 保存到redis缓存
         userService.saveImageCode(randomStr, text);
         ServletOutputStream out = response.getOutputStream();
         ImageIO.write(image, "JPEG", out);
