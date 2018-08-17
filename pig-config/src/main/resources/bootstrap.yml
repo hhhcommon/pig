@@ -10,7 +10,6 @@ spring:
     config:
       server:
         git:
-          #uri: https://gitee.com/cqzqxq_lxh/pig-config.git
           uri: https://github.com/xy-jack/config-server/
           search-paths: pig-config
           default-label: ${spring.profiles.active}      #${spring.profiles.active}   #解决监控down
@@ -22,6 +21,8 @@ management:
 endpoints:
   health:
     sensitive: false
+
+
 ---
 spring:
   profiles: dev
