@@ -10,10 +10,12 @@ spring:
         service-id: pig-config-server
         enabled: true
       profile: ${spring.profiles.active}
-      label: ${spring.profiles.active}
+      label: master
 
 logging:
   level: error
+
+
 
 ---
 spring:
@@ -25,12 +27,15 @@ eureka:
     lease-expiration-duration-in-seconds: 20
   client:
     serviceUrl:
-      defaultZone: http://pig:gip6666@localhost:1025/eureka
+      defaultZone: http://admin:admin@localhost:1025/eureka
     registry-fetch-interval-seconds: 10
+
 #认证服务器地址
 security:
   auth:
     server: http://localhost:3000
+
+
 ---
 spring:
   profiles: prd

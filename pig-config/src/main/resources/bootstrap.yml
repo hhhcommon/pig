@@ -1,18 +1,39 @@
 server:
   port: 4001
 
+encrypt:
+  key: YD
+
 spring:
   application:
     name: pig-config-server
   profiles:
     active: dev
+  rabbitmq:
+    host: '{cipher}aa3f1f22e6ec39f59b8073ef4f0150c94515d38a34d84b4bb660037fe4423ffb'
+    port: 5672
+    username: admin
+    password: admin
   cloud:
     config:
       server:
         git:
           uri: https://github.com/xy-jack/config-server/
-          search-paths: pig-config
-          default-label: ${spring.profiles.active}      #${spring.profiles.active}   #解决监控down
+          search-paths: pig-config              #配置仓库路径
+          #default-label: ${spring.profiles.active}      #${spring.profiles.active}   #解决监控down
+
+
+eureka:
+  instance:
+    prefer-ip-address: true
+    lease-renewal-interval-in-seconds: 5
+    lease-expiration-duration-in-seconds: 20
+  client:
+    serviceUrl:
+      defaultZone: http://admin:admin@localhost:1025/eureka
+    registry-fetch-interval-seconds: 10
+
+
 
 # 关闭安全管理
 management:
@@ -23,24 +44,8 @@ endpoints:
     sensitive: false
 
 
----
-spring:
-  profiles: dev
-  rabbitmq:
-    host: localhost
-    port: 5672
-    #username: pig
-    #password: lengleng
-eureka:
-  instance:
-    prefer-ip-address: true
-    lease-renewal-interval-in-seconds: 5
-    lease-expiration-duration-in-seconds: 20
-  client:
-    serviceUrl:
-      defaultZone: http://pig:gip6666@localhost:1025/eureka
-    registry-fetch-interval-seconds: 10
----
+#生产环境
+#---
 #spring:
 #  profiles: prd
 #  rabbitmq:
